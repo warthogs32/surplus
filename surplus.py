@@ -1,4 +1,5 @@
 import pandas as pd
+from Auction import *
 from decimal import Decimal
 import requests
 from bs4 import BeautifulSoup
@@ -14,13 +15,12 @@ class Auction:
     def display(self):
         return ("Auction Number: {} \nTitle: {} \nTime Remaining: {} \nCurrent Price: ${} \n".format(self.auctionNum, self.auctionTitle, self.auctionTime, self.auctionCurrentPrice))
 
-url = 'https://www.publicsurplus.com/sms/calpoly,ca/list/current?orgid=3013'
-page = urllib.request.urlopen(url)
-src = page.read()
-page.close()
-bs = BeautifulSoup(src, "html.parser")
+def load(url):
+    src = urllib.request.urlopen(url).read()
+    bs = BeautifulSoup(src, "html.parser")
+    return bs
 
-allAuctions = bs.findAll('tr')
+allAuctions = load('https://www.publicsurplus.com/sms/calpoly,ca/list/current?orgid=3013').findAll('tr')
 
 auctionList = []
 
