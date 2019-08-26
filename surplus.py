@@ -1,4 +1,5 @@
 import pandas as pd
+import csv
 from Auction import *
 from Time import *
 from decimal import Decimal
@@ -55,10 +56,21 @@ for auctionRecord in allAuctions:
         if len(auctionInfo) == 4:
             auctionInfo[0] = int(auctionInfo[0])
             auctionInfo[3] = auctionInfo[3].strip('$')
-            auctionList.append(Auction(auctionInfo[0], auctionInfo[1], parseTime(auctionInfo[2]), auctionInfo[3]))
+            time = parseTime(auctionInfo[2])
+            auctionList.append(Auction(auctionInfo[0], auctionInfo[1], time, auctionInfo[3]))
+            auctionDict[auctionInfo[0]] = [auctionInfo[1], time.toSeconds(), float(auctionInfo[3])]
+
+def toCSV():
+    with open('auctions.csv', mode='w') as auctions:
+        csvwriter = csv.writer(auctions, delimiter = ',', quotechar = '"', quoting=csv.QUOTE_MINIMAL)
+        csvwriter.writerow(["Auction Number", "Title", "Time Remaining", "Current Price"])
+        for key, val in auctionDict.items():
+            csvwriter.writerow([key, val[0], val[1], val[2]])
 
 for i in auctionList:
     print(i.display())
 
+print(auctionDict)
+toCSV()
 
 
