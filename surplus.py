@@ -8,12 +8,12 @@ import urllib.request
 
 auctionList = []
 
-def load(url):
+def loadSrc(url):
     src = urllib.request.urlopen(url).read()
     bs = BeautifulSoup(src, "html.parser")
     return bs
 
-allAuctions = load('https://www.publicsurplus.com/sms/calpoly,ca/list/current?orgid=3013').findAll('tr')
+allAuctions = loadSrc('https://www.publicsurplus.com/sms/calpoly,ca/list/current?orgid=3013').findAll('tr')
 
 for auctionRecord in allAuctions:
     auctionInfo = [i for i in [td.get_text().strip() for td in auctionRecord.findAll('td') if td] if i]
@@ -26,4 +26,5 @@ for auctionRecord in allAuctions:
 for i in auctionList:
     print(i.display())
 
-def
+def parseTime(timeString):
+    return list(timeString.split(" "))
