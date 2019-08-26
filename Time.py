@@ -6,3 +6,5 @@ class Time:
         self.hour = int(hour)
         self.minute = int(minute)
         self.second = int(second)
+    def display(self):
+        return ("{} months {} weeks {} days {} hours {} minutes {} seconds".format(self.month, self.week, self.day, self.hour, self.minute, self.second))
