@@ -72,5 +72,3 @@ for i in auctionList:
 
 print(auctionDict)
 toCSV()
-
-
