@@ -8,3 +8,5 @@ class Time:
         self.second = int(second)
     def display(self):
         return ("{} months {} weeks {} days {} hours {} minutes {} seconds".format(self.month, self.week, self.day, self.hour, self.minute, self.second))
+    def toSeconds(self):
+        return self.second + self.minute*60 + self.hour*3600 + self.day*3600*24 + self.week*3600*24*7

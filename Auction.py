@@ -5,4 +5,4 @@ class Auction:
         self.auctionTime=time
         self.auctionCurrentPrice=float(cp)
     def display(self):
-        return ("Auction Number: {} \nTitle: {} \nTime Remaining: {} \nCurrent Price: ${} \n".format(self.auctionNum, self.auctionTitle, self.auctionTime.display(), self.auctionCurrentPrice))
+        return ("Auction Number: {} \nTitle: {} \nTime Remaining: {} \nCurrent Price: ${} \n".format(self.auctionNum, self.auctionTitle, self.auctionTime.toSeconds(), self.auctionCurrentPrice))

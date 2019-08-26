@@ -8,6 +8,7 @@ import numpy as np
 import urllib.request
 
 auctionList = []
+auctionDict = {}
 
 def isInt(s):
     try:
