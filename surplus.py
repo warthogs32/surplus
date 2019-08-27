@@ -52,15 +52,15 @@ allAuctions = loadSrc('https://www.publicsurplus.com/sms/ucberkeley,ca/list/curr
 
 for auctionRecord in allAuctions:
     auctionInfo = [i for i in [td.get_text().strip() for td in auctionRecord.findAll('td') if td] if i]
-    for item in auctionInfo:
-        if len(auctionInfo) == 4:
+    if(len(auctionInfo) == 4):
+        for item in auctionInfo:
             auctionInfo[0] = int(auctionInfo[0])
             auctionInfo[3] = auctionInfo[3].strip('$')
             time = parseTime(auctionInfo[2])
             if "," in auctionInfo[3]:
                 auctionInfo[3] = auctionInfo[3].replace(",", "")
-            auctionList.append(Auction(auctionInfo[0], auctionInfo[1], time, auctionInfo[3]))
-            auctionDict[auctionInfo[0]] = [auctionInfo[1], time.toSeconds(), float(auctionInfo[3])]
+        auctionList.append(Auction(auctionInfo[0], auctionInfo[1], time, auctionInfo[3]))
+        auctionDict[auctionInfo[0]] = [auctionInfo[1], time.toSeconds(), float(auctionInfo[3])]
 
 def toCSV():
     with open('auctions.csv', mode='w') as auctions:
@@ -72,5 +72,4 @@ def toCSV():
 for i in auctionList:
     print(i.display())
 
-print(auctionDict)
 toCSV()
