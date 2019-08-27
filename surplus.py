@@ -48,7 +48,7 @@ def parseTime(timeString):
             timelist[5] = j[0]
     return Time(timelist[0], timelist[1], timelist[2], timelist[3], timelist[4], timelist[5])
 
-allAuctions = loadSrc('https://www.publicsurplus.com/sms/calpoly,ca/list/current?orgid=3013').findAll('tr')
+allAuctions = loadSrc('https://www.publicsurplus.com/sms/ucberkeley,ca/list/current?orgid=18446').findAll('tr')
 
 for auctionRecord in allAuctions:
     auctionInfo = [i for i in [td.get_text().strip() for td in auctionRecord.findAll('td') if td] if i]
@@ -57,6 +57,8 @@ for auctionRecord in allAuctions:
             auctionInfo[0] = int(auctionInfo[0])
             auctionInfo[3] = auctionInfo[3].strip('$')
             time = parseTime(auctionInfo[2])
+            if "," in auctionInfo[3]:
+                auctionInfo[3] = auctionInfo[3].replace(",", "")
             auctionList.append(Auction(auctionInfo[0], auctionInfo[1], time, auctionInfo[3]))
             auctionDict[auctionInfo[0]] = [auctionInfo[1], time.toSeconds(), float(auctionInfo[3])]
 
