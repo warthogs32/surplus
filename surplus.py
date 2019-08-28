@@ -48,7 +48,7 @@ def parseTime(timeString):
             timelist[5] = j[0]
     return Time(timelist[0], timelist[1], timelist[2], timelist[3], timelist[4], timelist[5])
 
-allAuctions = loadSrc('https://www.publicsurplus.com/sms/ucberkeley,ca/list/current?orgid=18446').findAll('tr')
+allAuctions = loadSrc('https://www.publicsurplus.com/sms/calpoly,ca/list/current?orgid=3013').findAll('tr')
 
 for auctionRecord in allAuctions:
     auctionInfo = [i for i in [td.get_text().strip() for td in auctionRecord.findAll('td') if td] if i]
