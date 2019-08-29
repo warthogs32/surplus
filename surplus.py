@@ -69,7 +69,3 @@ def toCSV():
         for key, val in auctionDict.items():
             csvwriter.writerow([key, val[0], val[1], val[2]])
 
-for i in auctionList:
-    print(i.display())
-
-toCSV()
