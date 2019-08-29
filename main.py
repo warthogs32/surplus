@@ -2,8 +2,8 @@ from flask import Flask
 from Surplus import *
 app = Flask(__name__)
 
-@app.route("/sms")
-def hello():
+@app.route("/surplus")
+def surplus():
     zz=Surplus();
     return zz.toCSV()
 
