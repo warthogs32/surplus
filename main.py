@@ -9,10 +9,6 @@ def surplus():
     zz.processAuctions()
     zz.toCSV()
     return zz
-    '''disp = ''
-    for i in zz.auctionList:
-        disp += i.display()
-    return disp'''
 
 @app.route("/getAuctionByNumber")
 def getAuctionByNumber():
@@ -20,8 +16,6 @@ def getAuctionByNumber():
     auctionNum = request.args.get('auctionNumber')
     auctionInfo = surp.auctionDict[int(auctionNum)]
     return auctionInfo.display()
-    
-
 
 if __name__ == "__main__":
     app.run(debug=True)
