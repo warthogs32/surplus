@@ -54,7 +54,9 @@ class Surplus:
         return Time(timelist[0], timelist[1], timelist[2], timelist[3], timelist[4], timelist[5])
 
     def toCSV(self):
-        with open(os.path.join(os.getcwd(), 'out', 'auctions.csv'), mode='w') as auctions:
+        if not os.path.exists('out'):
+            os.makedirs('out')
+        with open(os.path.join(os.getcwd(), 'out', 'auctions.csv'), mode='w+') as auctions:
             csvwriter = csv.writer(auctions, delimiter = ',', quotechar = '"', quoting=csv.QUOTE_MINIMAL)
             csvwriter.writerow(["Auction Number", "Title", "Time Remaining", "Current Price"])
             for key, val in self.auctionDict.items():
