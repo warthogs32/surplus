@@ -1,11 +1,12 @@
 from flask import Flask
-from Surplus import *
+from surplus import *
 app = Flask(__name__)
 
 @app.route("/surplus")
 def surplus():
-    zz=Surplus();
-    return zz.toCSV()
+    zz=Surplus()
+    zz.processAuctions()
+    zz.toCSV()
 
 if __name__ == "__main__":
     app.run(debug=True)
