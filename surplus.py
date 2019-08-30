@@ -1,7 +1,9 @@
 import pandas as pd
 import csv
-from Auction import *
-from Time import *
+import os
+import sys
+from Models.Auction import *
+from Models.Time import *
 from decimal import Decimal
 import requests
 from bs4 import BeautifulSoup
@@ -64,10 +66,9 @@ def processAuctions():
             auctionDict[auctionInfo[0]] = [auctionInfo[1], time.toSeconds(), float(auctionInfo[3])]
 
 def toCSV():
-    with open('auctions.csv', mode='w') as auctions:
+    with open(os.path.join(os.getcwd(), 'out', 'auctions.csv'), mode='w') as auctions:
         csvwriter = csv.writer(auctions, delimiter = ',', quotechar = '"', quoting=csv.QUOTE_MINIMAL)
         csvwriter.writerow(["Auction Number", "Title", "Time Remaining", "Current Price"])
         for key, val in auctionDict.items():
             csvwriter.writerow([key, val[0], val[1], val[2]])
-
-
+toCSV()
