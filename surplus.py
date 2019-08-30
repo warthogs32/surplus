@@ -60,7 +60,7 @@ class Surplus:
             csvwriter = csv.writer(auctions, delimiter = ',', quotechar = '"', quoting=csv.QUOTE_MINIMAL)
             csvwriter.writerow(["Auction Number", "Title", "Time Remaining", "Current Price"])
             for key, val in self.auctionDict.items():
-                csvwriter.writerow([key, val[0], val[1], val[2]])
+                csvwriter.writerow([key, val.auctionTitle, val.auctionTime.toSeconds(), val.auctionCurrentPrice])
 
     def processAuctions(self):
         allAuctions = self.loadSrc(self.URL).findAll('tr')
@@ -72,7 +72,9 @@ class Surplus:
                 time = self.parseTime(auctionInfo[2])
                 if "," in auctionInfo[3]:
                     auctionInfo[3] = auctionInfo[3].replace(",", "")
-                self.auctionList.append(Auction(auctionInfo[0], auctionInfo[1], time, auctionInfo[3]))
-                self.auctionDict[auctionInfo[0]] = [auctionInfo[1], time.toSeconds(), float(auctionInfo[3])]
+                currentAuction = Auction(auctionInfo[0], auctionInfo[1], time, auctionInfo[3])
+                self.auctionList.append(currentAuction)
+                #self.auctionDict[auctionInfo[0]] = [auctionInfo[1], time.toSeconds(), float(auctionInfo[3])]
+                self.auctionDict[auctionInfo[0]] = currentAuction
 
     

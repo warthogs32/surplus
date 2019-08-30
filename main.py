@@ -19,10 +19,7 @@ def getAuctionByNumber():
     surp = surplus()
     auctionNum = request.args.get('auctionNumber')
     auctionInfo = surp.auctionDict[int(auctionNum)]
-    auctionInfoString = ''
-    for i in auctionInfo:
-        auctionInfoString += str(i) + "\n"
-    return auctionInfoString
+    return auctionInfo.display()
     
 
 
