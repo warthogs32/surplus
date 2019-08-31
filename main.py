@@ -3,6 +3,7 @@ from flask import request
 from surplus import *
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
+from sms.sms import *
 
 app = Flask(__name__)
 
@@ -15,12 +16,20 @@ def surplus():
 
 @app.route("/getAuctionByNumber")
 def getAuctionByNumber():
-    surp = Surplus()
     auctionNum = request.args.get('auctionNumber')
-    auctionInfo = surp.auctionDict[int(auctionNum)]
+    auctionInfo = sp.auctionDict[int(auctionNum)]
     return auctionInfo.display()
 
+@app.route("/listAllAuctions", methods=['GET', 'POST'])
+def listAllAuctions():
+    allAuctions = ''
+    for i in sp.auctionDict.values():
+        allAuctions += i.display()
+    messageHandler.sendMessage
+    return allAuctions
+
 if __name__ == "__main__":
-    zz=Surplus()
-    zz.processAuctions()
+    sp=Surplus()
+    sp.processAuctions()
+    messageHandler = sms()
     app.run(debug=True)
