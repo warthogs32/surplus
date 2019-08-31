@@ -32,26 +32,22 @@ class Surplus:
         timeStringList = list(timeString.split(" "))
         splitTime =[]
         lst=[]
-        timelist=[0] * 6
+        timelist=[0] * 4
         for i in timeStringList:
             lst.append(i)
             if(not self.isInt(i)):
                 splitTime.append(lst)
                 lst = []
         for j in splitTime:
-            if j[1] == 'months':
-                timelist[0] = j[0]
-            if j[1] == 'weeks':
-                timelist[1] = j[0]
             if j[1] == 'days':
-                timelist[2] = j[0]
+                timelist[0] = j[0]
             if j[1] == 'hours':
-                timelist[3] = j[0]
+                timelist[1] = j[0]
             if j[1] == 'min':
-                timelist[4] = j[0]
+                timelist[2] = j[0]
             if j[1] == 'seconds':
-                timelist[5] = j[0]
-        return Time(timelist[0], timelist[1], timelist[2], timelist[3], timelist[4], timelist[5])
+                timelist[3] = j[0]
+        return Time(timelist[0], timelist[1], timelist[2], timelist[3])
 
     def toCSV(self):
         if not os.path.exists('out'):
@@ -60,7 +56,7 @@ class Surplus:
             csvwriter = csv.writer(auctions, delimiter = ',', quotechar = '"', quoting=csv.QUOTE_MINIMAL)
             csvwriter.writerow(["Auction Number", "Title", "Time Remaining", "Current Price"])
             for key, val in self.auctionDict.items():
-                csvwriter.writerow([key, val.auctionTitle, val.auctionTime.toSeconds(), val.auctionCurrentPrice])
+                csvwriter.writerow([key, val.auctionTitle, val.auctionTime.toEndDateStamp(), val.auctionCurrentPrice])
 
     def processAuctions(self):
         allAuctions = self.loadSrc(self.URL).findAll('tr')
