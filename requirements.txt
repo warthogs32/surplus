@@ -1,3 +1,9 @@
 Flask==1.0.2
+requests~=2.19.1
+urllib3~=1.23
+gunicorn~=19.9.0
+bs4~=0.0.1
+pandas~=0.22.0
+numpy~=1.14.1
 twilio~=6.0.0
 gunicorn==19.9.0
