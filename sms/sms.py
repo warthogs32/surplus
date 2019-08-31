@@ -15,5 +15,5 @@ client = Client(account_sid, auth_token)
 @app.route("/listAllAuctions", methods=['GET', 'POST'])
 def listAllAuctionsSMS():
     resp = MessagingResponse()
-    resp.message
+    resp.message()
 
