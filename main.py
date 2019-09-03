@@ -7,13 +7,6 @@ from sms.sms import *
 
 app = Flask(__name__)
 
-'''@app.route("/surplus")
-def surplus():
-    zz=Surplus()
-    zz.processAuctions()
-    zz.toCSV()
-    return zz'''
-
 @app.route("/getAuctionByNumber")
 def getAuctionByNumber():
     auctionNum = request.args.get('auctionNumber')
@@ -31,5 +24,6 @@ def listAllAuctions():
 if __name__ == "__main__":
     sp=Surplus()
     sp.processAuctions()
+    sp.toCSV()
     messageHandler = sms()
     app.run(debug=True)
