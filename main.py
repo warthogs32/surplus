@@ -18,7 +18,7 @@ def listAllAuctions():
     allAuctions = ''
     for i in sp.auctionDict.values():
         allAuctions += i.display()
-    messageHandler.sendMessage
+    messageHandler.sendMessage(allAuctions)
     return allAuctions
 
 if __name__ == "__main__":
