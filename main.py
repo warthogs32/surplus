@@ -15,10 +15,14 @@ def getAuctionByNumber():
 
 @app.route("/listAllAuctions", methods=['GET', 'POST'])
 def listAllAuctions():
+    destinationPhoneNumber = request.args.get('destinationPhoneNumber', None)
     allAuctions = ''
     for i in sp.auctionDict.values():
-        allAuctions += i.display()
-    messageHandler.sendMessage(allAuctions)
+        if destinationPhoneNumber is None:
+            allAuctions += i.display()
+        else:
+            allAuctions = i.display()
+            messageHandler.sendMessageNoHTTP(destinationPhoneNumber,allAuctions)
     return allAuctions
 
 if __name__ == "__main__":
