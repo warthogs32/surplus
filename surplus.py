@@ -70,7 +70,6 @@ class Surplus:
                     auctionInfo[3] = auctionInfo[3].replace(",", "")
                 currentAuction = Auction(auctionInfo[0], auctionInfo[1], time, auctionInfo[3])
                 self.auctionList.append(currentAuction)
-                #self.auctionDict[auctionInfo[0]] = [auctionInfo[1], time.toSeconds(), float(auctionInfo[3])]
                 self.auctionDict[auctionInfo[0]] = currentAuction
 
     
