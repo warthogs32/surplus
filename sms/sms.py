@@ -9,9 +9,9 @@ app = Flask(__name__)
 # Your Account Sid and Auth Token from twilio.com/console
 # DANGER! This is insecure. See http://twil.io/secure
 class sms:
-    ACCOUNT_SID = "ACf6519377bf2ea71fdfb027a4ac774240"
-    AUTH_TOKEN = "3ed7b245fe962eef8e137dc47c90755e"
-    origin_number = "+12153302416"
+    ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')
+    AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN') 
+    origin_number = os.getenv('ORIGIN_NUM') 
     client = Client(ACCOUNT_SID, AUTH_TOKEN)
 
     def sendMessageHTTP(self, messageToSend):
