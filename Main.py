@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+import pyodbc
 from surplus import *
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
@@ -15,6 +16,7 @@ def getAuctionByNumber():
 
 @app.route("/listAllAuctions", methods=['GET', 'POST'])
 def listAllAuctions():
+    sp.writeToSQL()
     destinationPhoneNumber = request.args.get('destinationPhoneNumber', None)
     allAuctions = ''
     for i in sp.auctionDict.values():

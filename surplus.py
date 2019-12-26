@@ -1,6 +1,7 @@
 import pandas as pd
 import csv
 import os
+import json
 import sys
 from Models.Auction import *
 from Models.Time import *
@@ -72,5 +73,8 @@ class Surplus:
                 currentAuction = Auction(auctionInfo[0], auctionInfo[1], time, auctionInfo[3])
                 self.auctionList.append(currentAuction)
                 self.auctionDict[auctionInfo[0]] = currentAuction
-
-    
+    def writeToSQL(self):
+        with open('db.json') as json_file:
+            db_info = json.load(json_file)
+            conn = pyodbc.connect('DRIVER='+db_info['drvr']+';SERVER='+db_info["server"]+';DATABASE='+db_info["database"]+';UID='+db_info["user"]+';PWD='+db_info["password"])
+            cursor = conn.cursor()
