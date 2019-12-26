@@ -5,6 +5,7 @@ import sys
 from Models.Auction import *
 from Models.Time import *
 from decimal import Decimal
+import pyodbc
 import requests
 from bs4 import BeautifulSoup
 import numpy as np

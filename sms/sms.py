@@ -12,7 +12,7 @@ class sms:
     ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')
     AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN') 
     origin_number = os.getenv('ORIGIN_NUM') 
-    client = Client(ACCOUNT_SID, AUTH_TOKEN)
+    client = Client('TWILIO_ACCOUNT_SID', 'TWILIO_AUTH_TOKEN')
 
     def sendMessageHTTP(self, messageToSend):
         resp = MessagingResponse()
