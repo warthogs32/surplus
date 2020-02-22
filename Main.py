@@ -16,7 +16,6 @@ def getAuctionByNumber():
 
 @app.route("/listAllAuctions", methods=['GET', 'POST'])
 def listAllAuctions():
-    sp.writeToSQL()
     destinationPhoneNumber = request.args.get('destinationPhoneNumber', None)
     allAuctions = ''
     for i in sp.auctionDict.values():
@@ -28,7 +27,7 @@ def listAllAuctions():
     return allAuctions
 
 if __name__ == "__main__":
-    sp=Surplus.instance()
+    sp=Surplus()
     sp.processAuctions()
     sp.toCSV()
     messageHandler = sms()

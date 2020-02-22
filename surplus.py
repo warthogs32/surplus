@@ -12,11 +12,17 @@ from bs4 import BeautifulSoup
 import numpy as np
 import urllib.request
 
-class Surplus:
-    def __init__(self):
-        self.auctionList = []
-        self.auctionDict = {}
-        self.URL = 'https://www.publicsurplus.com/sms/calpoly,ca/list/current?orgid=3013'
+class Surplus(object):
+
+    _instance = None
+    auctionList = []
+    auctionDict = {}
+    URL = 'https://www.publicsurplus.com/sms/calpoly,ca/list/current?orgid=3013'
+    
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(Surplus, cls).__new__(cls)
+        return cls._instance
 
     def isInt(self, s):
         try:
