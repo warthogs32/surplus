@@ -28,7 +28,7 @@ def listAllAuctions():
     return allAuctions
 
 if __name__ == "__main__":
-    sp=Surplus()
+    sp=Surplus.instance()
     sp.processAuctions()
     sp.toCSV()
     messageHandler = sms()
