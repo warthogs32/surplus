@@ -1,5 +1,5 @@
 __pycache__
 key*
-sms/api_key.py
 db.json
-generate_json.py
+config.json
+out/auctions.csv

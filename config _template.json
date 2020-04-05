@@ -1,0 +1,8 @@
+{
+    "URL": "",
+    "TWILIO": {
+        "ACCOUNT_SID": "",
+        "AUTH_TOKEN": "",
+        "ORIGIN_NUMBER": ""
+    }
+}
